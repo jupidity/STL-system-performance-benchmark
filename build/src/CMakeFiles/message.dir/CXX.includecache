@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sean/workspace/message/src/main.cpp
+message.h
+/home/sean/workspace/message/src/message.h
+
+/home/sean/workspace/message/src/message.h
+
