@@ -1,6 +1,9 @@
 /*
 This is test code for measureing the various differences in timing for using
 the defined C++ sequence containers
+
+Author: Sean Cassero
+
 */
 
 #include <iostream>
@@ -14,6 +17,7 @@ using namespace std;
 using namespace std::chrono;
 
 
+// function to time the duration for populating referenced container with 1000000 longs
 template <typename T>
 long growTime(T & container){
 high_resolution_clock::time_point t1 = high_resolution_clock::now(); // log the start time
@@ -22,6 +26,7 @@ high_resolution_clock::time_point t2 = high_resolution_clock::now(); // log the 
 return duration_cast<microseconds>( t2 - t1 ).count(); // return the elapsed time in microseconds
 }
 
+// function to time the duration for traversing each element using iterators on referenced container
 template <typename T>
 long traverseTime(T & container){
 high_resolution_clock::time_point t1 = high_resolution_clock::now(); // log the start time
@@ -30,7 +35,7 @@ high_resolution_clock::time_point t2 = high_resolution_clock::now(); // log the 
 return duration_cast<microseconds>( t2 - t1 ).count(); // return the elapsed time
 }
 
-
+// function to time the duration for executing a shuffle on referenced container
 template <typename T>
 long shuffleTime(T & container){
 high_resolution_clock::time_point t1 = high_resolution_clock::now(); // log the start time
@@ -39,6 +44,8 @@ high_resolution_clock::time_point t2 = high_resolution_clock::now(); // log the 
 return duration_cast<microseconds>(t2-t1).count(); // return the elapsed time
 }
 
+
+// function to time the duration for executing a sort on referenced container
 template <typename T>
 long sortTime(T & container){
 high_resolution_clock::time_point t1 = high_resolution_clock::now(); // log the start time
@@ -48,7 +55,7 @@ return duration_cast<microseconds>(t2-t1).count();
 }
 
 
-// function to return the number of digits
+// function to return the number of digits on int or long
 template <typename T>
 unsigned numDigits(T  & number){
 
@@ -81,15 +88,14 @@ return returnString;
 
 int main()
 {
+
+// initialize containers
 vector<long> first;
 deque<long> second;
 list<long> third;
 
-/*
-growTime(first);
-random_shuffle(first.begin(),first.end());
-sort(first.begin(),first.end());
-*/
+
+// compute durations
 long vecGrowDuration = growTime(first);
 long vecTraverseDuration = traverseTime(first);
 long vecShuffleDuration = shuffleTime(first);
@@ -98,16 +104,11 @@ long deqGrowDuration = growTime(second);
 long deqTraverseDuration = traverseTime(second);
 long deqShuffleDuration = shuffleTime(second);
 long deqSortDuration = sortTime(second);
-
 long listGrowDuration = growTime(third);
 long listTraverseDuration = traverseTime(third);
-//long listShuffleDuration = shuffleTime(third);
-//long listSortDuration = sortTime(third);
 
 // now we have the times for each of the iterators on the STL containers
-// lets make the output look pretty by making the printed strings the same length
-
-
+// print results
 cout << "-------|      grow|  traverse|   shuffle|      sort|-----"<< "\n";
 cout << "vector | " << generatePrintString(vecGrowDuration) <<  "| "<< generatePrintString(vecTraverseDuration) << "| " << generatePrintString(vecShuffleDuration)<< "| "<<generatePrintString(vecSortDuration) <<  "| (ns)\n";
 cout << "deque  | " << generatePrintString(deqGrowDuration) <<"| "<< generatePrintString(deqTraverseDuration) << "| " << generatePrintString(deqShuffleDuration)<< "| "<<generatePrintString(deqSortDuration) <<  "| (ns)\n";
