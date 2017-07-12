@@ -1,1 +1,0 @@
-/usr/bin/c++   -Wall -g    CMakeFiles/message.dir/main.cpp.o CMakeFiles/message.dir/message.cpp.o  -o message -rdynamic 
