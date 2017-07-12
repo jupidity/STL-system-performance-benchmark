@@ -60,9 +60,13 @@ return duration_cast<microseconds>(t2-t1).count();
 template <typename T>
 unsigned numDigits(T  & number){
 
+
 unsigned numDigits = 1;
+// divide the number by 10 until number < 10
 while(number /= 10)
 {
+
+    // augment the counter for each time there is a successful division
     ++numDigits;
 }
 return numDigits;
