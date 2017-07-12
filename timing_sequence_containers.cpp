@@ -3,6 +3,7 @@ This is test code for measureing the various differences in timing for using
 the defined C++ sequence containers
 
 Author: Sean Cassero
+4/19/17
 
 */
 
