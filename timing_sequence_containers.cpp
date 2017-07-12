@@ -48,6 +48,36 @@ return duration_cast<microseconds>(t2-t1).count();
 }
 
 
+// function to return the number of digits
+template <typename T>
+unsigned numDigits(T  & number){
+
+unsigned numDigits = 1;
+while(number /= 10)
+{
+    ++numDigits;
+}
+return numDigits;
+}
+
+// function to generate the a formatted string of the
+// iterator duration for pretty printing
+std::string generatePrintString(long & duration){
+
+// initialize the string with the duration
+std::string returnString = std::to_string(duration);
+
+// get the number of digits in the duration
+unsigned digits = numDigits(duration);
+
+// the print string should be 9 chars long,
+// fill in the print string with spaces until its long enough
+for(unsigned i =0; i< (9 - digits); ++i){
+    returnString.insert(0,1,' ');
+}
+return returnString;
+}
+
 
 int main()
 {
@@ -74,10 +104,14 @@ long listTraverseDuration = traverseTime(third);
 //long listShuffleDuration = shuffleTime(third);
 //long listSortDuration = sortTime(third);
 
-cout << "------    grow    | traverse |  shuffle  |  sort   | -----------------------------"<< "\n";
-cout << "vector | " << vecGrowDuration <<"    | "<< vecTraverseDuration << " |" << vecShuffleDuration<< " |"<<vecSortDuration <<  " |\n";
-cout << "deque  | " << deqGrowDuration <<"    | "<< deqTraverseDuration << " |" << deqShuffleDuration<< " |"<<deqSortDuration <<  " |\n";
-cout << "list   | " << listGrowDuration <<"   | "<< listTraverseDuration << " |\n";
+// now we have the times for each of the iterators on the STL containers
+// lets make the output look pretty by making the printed strings the same length
+
+
+cout << "-------|      grow|  traverse|   shuffle|      sort|-----"<< "\n";
+cout << "vector | " << generatePrintString(vecGrowDuration) <<  "| "<< generatePrintString(vecTraverseDuration) << "| " << generatePrintString(vecShuffleDuration)<< "| "<<generatePrintString(vecSortDuration) <<  "| (ns)\n";
+cout << "deque  | " << generatePrintString(deqGrowDuration) <<"| "<< generatePrintString(deqTraverseDuration) << "| " << generatePrintString(deqShuffleDuration)<< "| "<<generatePrintString(deqSortDuration) <<  "| (ns)\n";
+cout << "list   | " << generatePrintString(listGrowDuration) <<"| "<< generatePrintString(listTraverseDuration) << "|       N/A|       N/A| (ns)\n";
 
 return 0;
 
