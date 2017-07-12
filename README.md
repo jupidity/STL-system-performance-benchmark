@@ -1,6 +1,8 @@
 ## Overview
 
-A test for evaluating the time duration of four processes on the STL containers `vector`, `linked-list`, and `deque` on a linux system with gcc compiler -O2 optimization. Intended to function as a benchmark/comparison for system performance across embedded platforms. 
+A test for evaluating the speed of four processes on the STL containers `vector`, `linked-list`, and `deque` on a linux system with gcc compiler -O2 optimization.
+
+Intended to function as a benchmark/comparison for system performance across embedded platforms.
 
 the four processes are:
 
@@ -38,7 +40,7 @@ output should print to terminal with recorded times
 
 example results on Ubuntu 16.04:
 
-      -------|      grow|  traverse|   shuffle|      sort|-----
+    -------|      grow|  traverse|   shuffle|      sort|-----
     vector |     12563|         0|     42952|    107251| (ns)
     deque  |      4921|       990|     35345|     88448| (ns)
     list   |     33180|      3219|       N/A|       N/A| (ns)
