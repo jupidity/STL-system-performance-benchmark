@@ -1,4 +1,4 @@
-et/*
+/*
 This is test code for measureing the various differences in timing for using
 the defined C++ sequence containers
 */
@@ -80,4 +80,5 @@ cout << "deque  | " << deqGrowDuration <<"    | "<< deqTraverseDuration << " |" 
 cout << "list   | " << listGrowDuration <<"   | "<< listTraverseDuration << " |\n";
 
 return 0;
+
 }
